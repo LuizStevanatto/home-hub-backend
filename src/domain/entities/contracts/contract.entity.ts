@@ -1,3 +1,4 @@
+import { type } from 'os';
 import {
   Entity,
   Column,
@@ -7,39 +8,27 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class Property {
+export class Contract {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
-  name: string;
+  propertyId: string;
 
   @Column()
-  address: string;
+  tentantId: string;
+
+  @Column((type) => Date)
+  startDate: string;
+
+  @Column((type) => Date)
+  endDate: string;
 
   @Column()
-  city: string;
-
-  @Column()
-  state: string;
-
-  @Column()
-  zipCode: string;
-
-  @Column()
-  country: string;
-
-  @Column()
-  description: string;
+  isActive: boolean;
 
   @Column()
   price: number;
-
-  @Column({ default: true })
-  isAvailable: boolean;
-
-  @Column()
-  ownerId: string;
 
   @CreateDateColumn()
   createdAt: Date;

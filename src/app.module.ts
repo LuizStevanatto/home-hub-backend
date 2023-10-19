@@ -6,6 +6,8 @@ import { AuthModule } from './app/auth/auth.module';
 import { UserModule } from './app/user/user.module';
 import { User } from './domain/entities/user/user.entity';
 import { AllExceptionsFilter } from './domain/exceptions/all-exceptions.filter';
+import { PropertyModule } from './app/property/property.module';
+import { Property } from './domain/entities/property/property.entity';
 
 @Module({
   imports: [
@@ -20,12 +22,13 @@ import { AllExceptionsFilter } from './domain/exceptions/all-exceptions.filter';
         username: process.env.TYPE_ORM_DB_USERNAME,
         password: process.env.TYPE_ORM_DB_PASSWORD,
         database: process.env.TYPE_ORM_DB_DATABASE,
-        entities: [User],
+        entities: [User, Property],
         synchronize: true,
       }),
     }),
     UserModule,
     AuthModule,
+    PropertyModule,
   ],
   providers: [
     {

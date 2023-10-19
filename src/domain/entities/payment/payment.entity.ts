@@ -1,3 +1,4 @@
+import { type } from 'os';
 import {
   Entity,
   Column,
@@ -7,43 +8,24 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class Property {
+export class Payment {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
-  name: string;
+  contractId: string;
 
   @Column()
-  address: string;
-
-  @Column()
-  city: string;
-
-  @Column()
-  state: string;
-
-  @Column()
-  zipCode: string;
-
-  @Column()
-  country: string;
-
-  @Column()
-  description: string;
+  paymentMethod: string;
 
   @Column()
   price: number;
 
-  @Column({ default: true })
-  isAvailable: boolean;
-
   @Column()
-  ownerId: string;
+  isPaid: boolean;
 
   @CreateDateColumn()
   createdAt: Date;
-
   @UpdateDateColumn()
   updatedAt: Date;
 }
