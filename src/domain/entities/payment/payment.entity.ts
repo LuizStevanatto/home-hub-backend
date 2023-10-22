@@ -21,7 +21,7 @@ export class Payment {
   @Column()
   price: number;
 
-  @Column()
+  @Column({ default: false })
   isPaid: boolean;
 
   @CreateDateColumn()
