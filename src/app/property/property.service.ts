@@ -81,6 +81,8 @@ export class PropertyService {
       ...propertyUpdate,
     };
 
+    data.ownerId = property.ownerId;
+
     try {
       await this.propertyRepository.save(data);
       return data;
@@ -94,8 +96,11 @@ export class PropertyService {
 
     if (!property) throw new PropertyNotFoundException();
 
+    console.log({ id });
+    console.log({ property });
+
     try {
-      await this.propertyRepository.delete(property);
+      await this.propertyRepository.delete(property.id);
     } catch (err) {
       throw new PropertyException(err.message);
     }

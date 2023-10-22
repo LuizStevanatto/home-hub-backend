@@ -8,6 +8,8 @@ import { User } from './domain/entities/user/user.entity';
 import { AllExceptionsFilter } from './domain/exceptions/all-exceptions.filter';
 import { PropertyModule } from './app/property/property.module';
 import { Property } from './domain/entities/property/property.entity';
+import { ContractsModule } from './app/contracts/contracts.module';
+import { Contracts } from './domain/entities/contracts/contracts.entity';
 
 @Module({
   imports: [
@@ -22,13 +24,14 @@ import { Property } from './domain/entities/property/property.entity';
         username: process.env.TYPE_ORM_DB_USERNAME,
         password: process.env.TYPE_ORM_DB_PASSWORD,
         database: process.env.TYPE_ORM_DB_DATABASE,
-        entities: [User, Property],
+        entities: [User, Property, Contracts],
         synchronize: true,
       }),
     }),
     UserModule,
-    AuthModule,
     PropertyModule,
+    ContractsModule,
+    AuthModule,
   ],
   providers: [
     {

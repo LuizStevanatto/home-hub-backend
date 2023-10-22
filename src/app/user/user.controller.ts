@@ -38,7 +38,7 @@ export class UserController {
     return await this.userService.getAllUsers();
   }
 
-  @Put(':id')
+  @Put('/:id')
   async updateUser(
     @Body() userUpdate: UpdateUserDto,
     @Param('id') id: string,
@@ -46,7 +46,7 @@ export class UserController {
     await this.userService.updateUserById(userUpdate, id);
   }
 
-  @Delete(':id')
+  @Delete('/:id')
   async deleteUser(@Param('id') id: string): Promise<void> {
     await this.userService.deleteUserById(id);
   }

@@ -25,7 +25,7 @@ export class PropertyController {
   }
 
   @Get('/:id')
-  async getPropertyById(@Body('id') id: string): Promise<Property> {
+  async getPropertyById(@Param('id') id: string): Promise<Property> {
     return await this.propertyService.getPropertyById(id);
   }
 
@@ -34,7 +34,7 @@ export class PropertyController {
     return await this.propertyService.getAllProperties();
   }
 
-  @Put(':id')
+  @Put('/:id')
   async updateProperty(
     @Body() propertyUpdate: UpdatePropertyDto,
     @Param('id') id: string,
@@ -42,7 +42,7 @@ export class PropertyController {
     await this.propertyService.updatePropertyById(propertyUpdate, id);
   }
 
-  @Delete(':id')
+  @Delete('/:id')
   async deleteProperty(@Param('id') id: string): Promise<void> {
     await this.propertyService.deletePropertyById(id);
   }

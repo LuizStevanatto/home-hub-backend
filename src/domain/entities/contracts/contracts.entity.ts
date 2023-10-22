@@ -7,8 +7,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity()
-export class Contract {
+@Entity('contracts')
+export class Contracts {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -18,13 +18,16 @@ export class Contract {
   @Column()
   tentantId: string;
 
+  @Column()
+  ownerId: string;
+
   @Column((type) => Date)
   startDate: string;
 
   @Column((type) => Date)
   endDate: string;
 
-  @Column()
+  @Column({ default: true })
   isActive: boolean;
 
   @Column()
