@@ -31,6 +31,27 @@ export class ContractsController {
     return await this.contractsService.getContractsById(id);
   }
 
+  @Get('/owner/:id')
+  async getAllContractsByOwnerId(
+    @Param('id') id: string,
+  ): Promise<Contracts[]> {
+    return await this.contractsService.getAllContractsByOwnerId(id);
+  }
+
+  @Get('/property/:id')
+  async getAllContractsByPropertyId(
+    @Param('id') id: string,
+  ): Promise<Contracts[]> {
+    return await this.contractsService.getAllContractsByPropertyId(id);
+  }
+
+  @Get('/tenant/:id')
+  async getAllContractsByTenantId(
+    @Param('id') id: string,
+  ): Promise<Contracts[]> {
+    return await this.contractsService.getAllContractsByTenantId(id);
+  }
+
   @Post()
   async createContracts(
     @Body() createContracts: CreateContractDto,
