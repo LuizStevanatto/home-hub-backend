@@ -8,14 +8,13 @@ import { UnauthorizedError } from './exceptions/unauthorized.exception';
 import { User } from 'src/domain/entities/user/user.entity';
 
 interface PayloadProp {
-  id: string;
-  username: string;
+  name: string;
   email: string;
 }
 
 export interface LoginResponse {
   id: string;
-  username: string;
+  name: string;
   email: string;
   accessToken: string;
 }
@@ -44,10 +43,9 @@ export class AuthService {
     throw new UnauthorizedError();
   }
 
-  login(user: User): LoginResponse {
+  login(user: any): LoginResponse {
     const payload: PayloadProp = {
-      id: user.id,
-      username: user.username,
+      name: user.name,
       email: user.email,
     };
 
@@ -55,7 +53,7 @@ export class AuthService {
 
     return {
       id: user.id,
-      username: user.username,
+      name: user.name,
       email: user.email,
       accessToken: jwt,
     };

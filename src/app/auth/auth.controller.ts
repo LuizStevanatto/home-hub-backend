@@ -23,9 +23,7 @@ export class AuthController {
 
   @IsPublic()
   @Post('signin')
-  @HttpCode(200)
-  @UseGuards(LocalAuthGuard)
   login(@Req() request: AuthRequest) {
-    return this.authService.login(request.user);
+    return this.authService.login(request.body);
   }
 }

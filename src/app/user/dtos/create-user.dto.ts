@@ -16,7 +16,7 @@ export class CreateUserDto {
 
   @IsNotEmpty()
   @IsString()
-  username: string;
+  name: string;
 
   @IsNotEmpty()
   @MinLength(4)

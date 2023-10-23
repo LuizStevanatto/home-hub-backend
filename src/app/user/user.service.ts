@@ -38,7 +38,7 @@ export class UserService {
   async getAllUsers(): Promise<User[]> {
     try {
       const data = await this.userRepository.find({
-        select: ['id', 'username', 'email', 'isAdmin'],
+        select: ['id', 'name', 'email', 'isAdmin'],
       });
 
       return data;

@@ -96,9 +96,6 @@ export class PropertyService {
 
     if (!property) throw new PropertyNotFoundException();
 
-    console.log({ id });
-    console.log({ property });
-
     try {
       await this.propertyRepository.delete(property.id);
     } catch (err) {

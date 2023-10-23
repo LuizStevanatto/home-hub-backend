@@ -151,8 +151,6 @@ export class ContractsService {
 
       return constractsCreated;
     } catch (err) {
-      console.log(err);
-
       throw new ContractsException(err.message);
     }
   }
