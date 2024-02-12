@@ -26,8 +26,6 @@ export class AuthService {
   constructor(
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
   ) {}
 
   async validateEmailAndPassword(email: string, password: string) {
@@ -47,23 +45,19 @@ export class AuthService {
     throw new UnauthorizedError();
   }
 
-  login(user: any): LoginResponse {
+  async login(user: any): Promise<LoginResponse> {
     const payload: PayloadProp = {
       name: user.name,
       email: user.email,
     };
 
-    const userData = this.userRepository.findOne({
-      where: { email: user.email },
-    });
-
-    console.log(userData);
+    const userData = await this.userService.findEmailAuth(user.email);
 
     const jwt = this.jwtService.sign(payload);
 
     return {
-      id: user.id,
-      name: user.name,
+      id: userData.id,
+      name: userData.name,
       email: user.email,
       accessToken: jwt,
     };
