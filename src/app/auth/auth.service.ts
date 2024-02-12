@@ -6,6 +6,8 @@ import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { UnauthorizedError } from './exceptions/unauthorized.exception';
 import { User } from 'src/domain/entities/user/user.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 interface PayloadProp {
   name: string;
@@ -24,6 +26,8 @@ export class AuthService {
   constructor(
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
   ) {}
 
   async validateEmailAndPassword(email: string, password: string) {
@@ -48,6 +52,12 @@ export class AuthService {
       name: user.name,
       email: user.email,
     };
+
+    const userData = this.userRepository.findOne({
+      where: { email: user.email },
+    });
+
+    console.log(userData);
 
     const jwt = this.jwtService.sign(payload);
 
