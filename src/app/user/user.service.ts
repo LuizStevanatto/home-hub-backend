@@ -83,8 +83,6 @@ export class UserService {
   async updateUserById(userUpdate: UpdateUserDto, id): Promise<User> {
     const user = await this.userRepository.findOneBy({ id });
 
-    console.log(user);
-
     if (!user) throw new UserNotFoundException();
 
     const data = {
