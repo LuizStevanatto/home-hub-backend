@@ -4,6 +4,7 @@ import {
   Matches,
   MinLength,
   IsOptional,
+  IsBoolean,
 } from 'class-validator';
 
 export class CreateUserDto {
@@ -25,4 +26,12 @@ export class CreateUserDto {
     message: 'Password too weak',
   })
   password: string;
+
+  @IsOptional()
+  @IsBoolean()
+  isAdmin: boolean;
+
+  @IsOptional()
+  @IsBoolean()
+  isActive: boolean;
 }

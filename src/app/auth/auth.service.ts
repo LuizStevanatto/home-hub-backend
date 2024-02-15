@@ -19,6 +19,7 @@ export interface LoginResponse {
   name: string;
   email: string;
   accessToken: string;
+  isAdmin: boolean;
 }
 
 @Injectable()
@@ -58,6 +59,7 @@ export class AuthService {
     return {
       id: userData.id,
       name: userData.name,
+      isAdmin: userData.isAdmin,
       email: user.email,
       accessToken: jwt,
     };
