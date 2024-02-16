@@ -2,6 +2,7 @@ import {
   IsBoolean,
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsString,
   IsUUID,
   isNotEmpty,
@@ -18,7 +19,7 @@ export class CreateContractDto {
   @IsUUID()
   tentantId: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   @IsUUID()
   ownerId: string;
