@@ -23,12 +23,14 @@ export class ContractsService {
     propertyId: string,
     ownerId: string,
     tentantId: string,
+    price: number,
   ) {
     try {
       const property = await this.contractsRepository.findOneBy({
         propertyId,
         ownerId,
         tentantId,
+        price,
         isActive: true,
       });
       return !!property;
@@ -140,6 +142,7 @@ export class ContractsService {
         createContracts.propertyId,
         createContracts.ownerId,
         createContracts.tentantId,
+        createContracts.price,
       );
 
       if (contractsAlreadyExists)
@@ -151,6 +154,7 @@ export class ContractsService {
 
       return constractsCreated;
     } catch (err) {
+      console.log(err);
       throw new ContractsException(err.message);
     }
   }
