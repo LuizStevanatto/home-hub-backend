@@ -162,7 +162,7 @@ export class ContractsService {
   async updateContractsById(
     contractsUpdate: UpdateContractDto,
     id,
-  ): Promise<Contracts> {
+  ): Promise<Contracts | null> {
     const contracts = await this.contractsRepository.findOneBy({ id });
 
     if (!contracts) throw new ContractsNotFoundException();

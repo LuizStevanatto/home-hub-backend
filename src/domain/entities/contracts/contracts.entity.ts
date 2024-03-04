@@ -21,11 +21,11 @@ export class Contracts {
   @Column()
   ownerId: string;
 
-  @Column((type) => Date)
-  startDate: string;
+  @Column()
+  startDate: Date;
 
-  @Column((type) => Date)
-  endDate: string;
+  @Column()
+  endDate: Date;
 
   @Column({ default: true })
   isActive: boolean;

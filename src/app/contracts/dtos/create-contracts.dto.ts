@@ -1,5 +1,6 @@
 import {
   IsBoolean,
+  IsDate,
   IsNotEmpty,
   IsNumber,
   IsOptional,
@@ -25,12 +26,10 @@ export class CreateContractDto {
   ownerId: string;
 
   @IsNotEmpty()
-  @IsString()
-  startDate: string;
+  startDate: Date;
 
   @IsNotEmpty()
-  @IsString()
-  endDate: string;
+  endDate: Date;
 
   @IsNotEmpty()
   @IsBoolean()
