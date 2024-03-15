@@ -152,6 +152,13 @@ export class ContractsService {
         createContracts,
       );
 
+      const updateProperty = await this.propertyService.updatePropertyById(
+        {
+          isAvailable: false,
+        },
+        createContracts.propertyId,
+      );
+
       return constractsCreated;
     } catch (err) {
       console.log(err);
