@@ -11,6 +11,7 @@ import { UserService } from '../user/user.service';
 
 @Injectable()
 export class PropertyService {
+  contractsRepository: any;
   constructor(
     @InjectRepository(Property)
     private readonly propertyRepository: Repository<Property>,
@@ -97,6 +98,19 @@ export class PropertyService {
     if (!property) throw new PropertyNotFoundException();
 
     try {
+      var contracts = await this.contractsRepository.find({
+        where: {
+          propertyId: id,
+        },
+      });
+
+      // VERRTIFAR SE TEM CONTRATOATVO
+      contracts.map((contract) => {
+        if (contract.isActive) {
+          throw new PropertyException('Property has active contracts');
+        }
+      });
+
       await this.propertyRepository.delete(property.id);
     } catch (err) {
       throw new PropertyException(err.message);
